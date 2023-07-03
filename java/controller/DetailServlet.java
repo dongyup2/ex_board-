@@ -19,19 +19,7 @@ public class DetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String _bno = request.getParameter("bno");
-		int bno = Integer.parseInt(_bno);
 		
-		BoardDao boradDao = new BoardDao();
-		Board board = boradDao.getBoard(bno);
-		
-		request.setAttribute("board", board);
-		
-		ReplyDao replyDao = new ReplyDao();
-		ArrayList<Reply> replyList = replyDao.getReplyList(bno);
-		request.setAttribute("replyList", replyList);
-		
-		request.getRequestDispatcher("detail.jsp").forward(request, response);
 	}
 
 }

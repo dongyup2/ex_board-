@@ -16,13 +16,11 @@ import vo.Board;
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
- 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDao bDao = new BoardDao();
+		BoardDao boardDao = new BoardDao();
+		ArrayList<Board> List = boardDao.getBoardList();
 		
-		ArrayList<Board> list = bDao.getBoardList();
-		
-		request.setAttribute("list", list);
+		request.setAttribute("List", List);
 		request.getRequestDispatcher("boardList.jsp").forward(request, response);
 	}
 }

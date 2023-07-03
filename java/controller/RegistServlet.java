@@ -15,12 +15,10 @@ public class RegistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("regForm.jsp").forward(request,response);
+		request.getRequestDispatcher("regForm.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
 		
 		Board board = Board.builder()
@@ -28,16 +26,13 @@ public class RegistServlet extends HttpServlet {
 					.content(request.getParameter("content"))
 					.writer(request.getParameter("writer"))
 					.build();
+		BoardDao boardDao = new BoardDao();
+		int result = boardDao.regBoard(board);
 		
-		BoardDao bDao = new BoardDao();
-		int result = bDao.regBoard(board);
-		
-		if(result == 1){
+		if(result == 1) {
 			response.sendRedirect("success.jsp");
-		}else{
+		}else {
 			response.sendRedirect("fail.jsp");
 		}
 	}
-
 }
-
